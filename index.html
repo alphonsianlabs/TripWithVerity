@@ -168,7 +168,7 @@ function update(dt){
  boss(dt,km);zombies(dt,c0);bats_(dt);cbeams(dt,km);
  maxKm=Math.max(maxKm,Math.min(km,END_KM));const zq=zi(km);chatT-=dt;if(chatT<=0){chatT=10+Math.random()*6;if(subT<=0)say(pick('c'+(zq===0?0:zq<=3?1:zq<=7?2:3)))}
  idle=speed<MAXS*.08?idle+dt:0;if(idle>4){idle=-6;say(pick('idle'))}if(hp<25&&!lowSaid){lowSaid=1;sayE('low')}else if(hp>=50)lowSaid=0;
- const offr=Math.abs(playerX)>.85&&!flying;offT=offr?offT+dt:Math.max(0,offT-dt*1.5);if(offT<4)offW=0;if(offT>=8&&offW<1){offW=1;say(pick('off1'))}if(offT>=12&&offW<2){offW=2;say(pick('off2'))}if(offT>=15){st='eaten';eatT=0;hp=0;shake=.6;say(pick('eat'));return}
+ const offr=Math.abs(playerX)>.85&&!flying;offT=offr?offT+dt:Math.max(0,offT-dt*1.5);if(offT<4)offW=0;if(offT>=8&&offW<1){offW=1;say(pick('off1'))}if(offT>=12&&offW<2){offW=2;say(pick('off2'))}if(offT>=8){st='eaten';eatT=0;hp=0;shake=.6;say(pick('eat'));return}
  if(km>=END_KM){st='fade';fadeT=0;won=true;autoRoll=1}}
 
 /* ===== ZOMBIE AI, BATS, BOSS ===== */
