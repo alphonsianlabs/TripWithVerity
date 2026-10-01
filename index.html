@@ -120,7 +120,7 @@ function objs(i){if(i<300)return EMPTY;const zn_=zi(i*KM_PER_SEG),z=Z[zn_],m=i%S
  if(m===18&&zn_!==9&&ho(i,9)<.012)return[{id:i*4+2,t:'P',off:ho(i,10)<.5?-1.75:1.75}];
  if(m===18&&zn_>=1&&zn_!==9&&ho(i,17)<.005)return[{id:i*4+2,t:'T',off:LANES[Math.floor(ho(i,18)*3)]}];
  if(zn_>=4&&(m===3||m===15)&&ho(i,20+m)<.25)return[{id:i*4,t:'a',off:LANES[Math.floor(ho(i,40+m)*3)]}];
- if(m===21&&zn_>=1&&zn_!==9&&zn_!==11&&ho(i,60)<.020)rn[{id:i*4,t:'o',off:LANES[Math.floor(ho(i,61)*3)]}]; // dark orb
+ if(m===21&&zn_>=1&&zn_!==9&&zn_!==11&&ho(i,60)<.036)return[{id:i*4,t:'o',off:LANES[Math.floor(ho(i,61)*3)]}]; // dark orb
  return EMPTY}
 const zs=new Map(),offOf=o=>o.t==='z'?cl(zs.has(o.id)?zs.get(o.id):o.off,-1.9,1.9):cl(o.off+(SPEC[o.t].mv||0)*Math.sin(t*2.2+o.id),-1.9,1.9);
 
