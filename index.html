@@ -99,7 +99,7 @@ function objs(i){if(i<300)return EMPTY;const zn_=zi(i*KM_PER_SEG),z=Z[zn_],m=i%S
  if(m===18&&zn_!==9&&ho(i,9)<.012)return[{id:i*4+2,t:'P',off:ho(i,10)<.5?-1.75:1.75}];
  if(m===18&&zn_>=1&&zn_!==9&&ho(i,17)<.005)return[{id:i*4+2,t:'T',off:LANES[Math.floor(ho(i,18)*3)]}];
  if(zn_>=4&&(m===3||m===15)&&ho(i,20+m)<.25)return[{id:i*4,t:'a',off:LANES[Math.floor(ho(i,40+m)*3)]}];
- if(m===21&&zn_>=1&&zn_!==9&&zn_!==11&&ho(i,60)<.012)return[{id:i*4,t:'o',off:LANES[Math.floor(ho(i,61)*3)]}]; // dark orb
+ if(m===21&&zn_>=1&&zn_!==9&&zn_!==11&&ho(i,60)<.036)return[{id:i*4,t:'o',off:LANES[Math.floor(ho(i,61)*3)]}]; // dark orb
  return EMPTY}
 const zs=new Map(),offOf=o=>o.t==='z'?cl(zs.has(o.id)?zs.get(o.id):o.off,-1.9,1.9):cl(o.off+(SPEC[o.t].mv||0)*Math.sin(t*2.2+o.id),-1.9,1.9);
 
@@ -402,7 +402,7 @@ off2:["The edge is not a place to live, friend. Move. NOW. I don't like asking t
 eat:["I told you to stay on the road, friend. Now you'll stay with me. Forever.","Nobody leaves Verity's road. Nobody. Hehe. Nobody.","Mmm. I warned you. Best friends don't wander off."],
 fly:["Up, up! ...Don't go too high. I can't reach you up there.","Flying! Be careful. The sky's not mine. ...Yet."],
 orb:["A dark orb! Don't worry, it only makes you slow and a little sick. Hehe. You'll be fine. Probably.","Ooh, that one's mine! It slows you down so we can spend more time together. And it hurts. A little.","Feeling heavy, friend? That's the orb. It's very clingy. Like me."],
-cbeam:["Crystal beam! I made it with love. Mostly love. Dodge it, friend. Think of it as a warm-up for what's below.","Pretty and pointy! Watch the glow on the ground. That's where the crystals go.","The crystals are getting excited! Mind the beams. They're only a little bit lethal."]},lastI={};
+cbeam:["Crystal beam! I made it with love. Mostly love. Dodge it, friend. Think of it as a warm-up for what's below.","Pretty and pointy! Watch the glow on the ground. That's where the crystals go.","The crystals are getting excited! Mind the beams. They're only a little bit lethal.","These crystals remind me of Jades and Diamonds! Really interesting..."]},lastI={};
 const pick=k=>{const a=L[k];let i=Math.floor(Math.random()*a.length);if(a.length>1&&i===lastI[k])i=(i+1)%a.length;lastI[k]=i;return a[i]},sayE=k=>{if(subT<=3)say(pick(k))};
 
 /* ===== LEADERBOARD: scores live in this browser (localStorage). A trophy is awarded only for finishing the road. ===== */
@@ -411,7 +411,7 @@ const saveLb=()=>{try{localStorage.setItem('vr_lb',JSON.stringify(lb))}catch(e){
 const score=()=>Math.floor(maxKm)+coinTot*200+(bossDone&&maxKm>=80000?10000:0)+(won?50000+Math.max(0,Math.round(360-tot))*250:0);
 const TEAM=[]; // add more team member names here, e.g. 'Name - Role'
 function msgText(){const sc=score();
- if(st==='credits')return 'CREDITS\n\nHEAD DEVELOPER\nJohann Cedrick S. Nacianceno\n\nDEVELOPMENT TEAM\nTLE ICT Group 1 · 10-Accuracy\n'+TEAM.join('\n')+'\n\nVerity is inspired by the original character by ThatMob\n\nThank you for playing!\n\nENTER: BACK';
+ if(st==='credits')return 'CREDITS\n\nHEAD DEVELOPER\nJohann Cedrick S. Nacianceno\n\nMY GROUP\nTLE ICT Group 1 · 10-Accuracy\n'+TEAM.join('\n')+'\n\nVerity is inspired by the original character by ThatMob\n\nThank you for playing!\n\nENTER: BACK';
  if(st==='title')return "VERITY'S ROAD\nA guided drive with your personal helper friend\n\nPRESS ↑ OR ENTER TO BEGIN\nL: LEADERBOARD · C: CREDITS";
  if(st==='dead'){if(!eaten&&boomT<1.2)return '';return (eaten?'EATEN\nI told you to stay on the road.':'CRASHED\nVerity is waiting.')+'\n\nENTER: RETRY FROM '+Z[zi(pos/SL*KM_PER_SEG)].name.toUpperCase()+'\n2: RESTART FROM THE BEGINNING\nE: END RUN & SAVE SCORE'}
  if(st==='cash')return skipped?"ZONE SKIPS WERE USED\nSo this run can't be saved.\n\nESC: BACK":'END RUN EARLY?\nSCORE '+sc.toLocaleString()+' · '+Math.floor(maxKm).toLocaleString()+' km\n\nENTER: SAVE TO LEADERBOARD (no trophy)\nESC: KEEP GOING';
